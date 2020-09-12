@@ -22,8 +22,11 @@ for i in range(len(images)-1):
 def estimate_motion(prev, next):
     prev = cv.cvtColor(prev, cv.COLOR_BGR2GRAY)
     next = cv.cvtColor(next, cv.COLOR_BGR2GRAY)
-    return cv.calcOpticalFlowFarneback(prev, next, None, 0.75, 8,
-                                       15, 5, 7, 1.1, 0)
+    # prev, net, flow, pyr_scale, levels, winsize, iterations, poly_n,
+    # poly_sigma, flags
+    return cv.calcOpticalFlowFarneback(prev, next, None, 0.5, 3,
+                                       3, 5, 10, 1.5, 0)
+
 
 def project(image, motion):
     height, width = motion.shape[:2]
