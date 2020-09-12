@@ -7,7 +7,8 @@ images = []
 
 # Read the images
 for root, dirs, files in os.walk("./input/"):
-    for filename in files.sort():
+    files.sort()
+    for filename in files:
         fn = "./input/" + filename
         print("Reading", fn)
         img = cv.imread(fn, cv.IMREAD_UNCHANGED)
