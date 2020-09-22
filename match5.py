@@ -5,9 +5,9 @@ import astroalign as aa
 
 MAX_NUMBER_OF_IMAGES = 500
 
-def read_image(fn):
+def read(fn):
     print("Reading", fn, end= ' ', flush=True)
-    img = cv.imread("./input/" + fn, cv.IMREAD_UNCHANGED)
+    img = cv.imread(fn, cv.IMREAD_UNCHANGED)
     if img is None:
         print("Error reading", fn)
     #img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
@@ -16,10 +16,18 @@ def read_image(fn):
     print(img.max(), img.min())
     return img
 
-for root, dirs, files in os.walk("./input/"):
+def read_image(fn):
+    fn = "./images/" + fn
+    return read(fn)
+
+# Dark image
+dark = read("dark.tiff")
+
+for root, dirs, files in os.walk("./images/"):
     files.sort()
     first = files.pop(0)
     target = read_image(first)
+    target -= dark
     target_luma = cv.cvtColor(target, cv.COLOR_BGR2GRAY)
     accumulated = target
     counter = 1
