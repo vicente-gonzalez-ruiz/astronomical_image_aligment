@@ -28,7 +28,7 @@ for root, dirs, files in os.walk("./input/"):
         print("Projecting", filename)
         source_luma = cv.cvtColor(source, cv.COLOR_BGR2GRAY)
         try:
-            transf, (source_list, target_list) = aa.find_transform(source_luma, target_luma)
+            transf, (source_list, target_list) = aa.find_transform(source =source_luma, target = target_luma, max_control_points = 1000)
             projection_0, footprint = aa.apply_transform(transf, source[:,:,0], target[:,:,0])
             projection_1, footprint = aa.apply_transform(transf, source[:,:,1], target[:,:,1])
             projection_2, footprint = aa.apply_transform(transf, source[:,:,2], target[:,:,2])
