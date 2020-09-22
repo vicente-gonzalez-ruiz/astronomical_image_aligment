@@ -4,6 +4,7 @@ import os
 import astroalign as aa
 
 MAX_NUMBER_OF_IMAGES = 500
+MAX_CONTROL_POINTS = 100
 
 def read(fn):
     print("Reading", fn, end= ' ', flush=True)
