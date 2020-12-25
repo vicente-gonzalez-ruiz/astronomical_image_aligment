@@ -8,7 +8,6 @@ import io.read_image as read_image
 MAX_NUMBER_OF_IMAGES = 500
 MAX_CONTROL_POINTS = 50
 
-
 # Dark image
 dark_image = read("dark.tiff")
 
