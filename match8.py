@@ -2,24 +2,12 @@ import numpy as np
 import cv2 as cv
 import os
 import astroalign as aa
+import io.read ad read
+import io.read_image as read_image
 
 MAX_NUMBER_OF_IMAGES = 500
 MAX_CONTROL_POINTS = 50
 
-def read(fn):
-    print("Reading", fn, end= ' ', flush=True)
-    img = cv.imread(fn, cv.IMREAD_UNCHANGED)
-    if img is None:
-        print("Error reading", fn)
-    #img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-    print("with shape", img.shape)
-    img = img.astype(np.float32)
-    print(img.max(), img.min())
-    return img
-
-def read_image(fn):
-    fn = "./images/" + fn
-    return read(fn)
 
 # Dark image
 dark_image = read("dark.tiff")
