@@ -4,12 +4,12 @@ import numpy as np
 from io_image import read as read
 from io_image import read_image as read_image
 
-MAX_NUMBER_OF_IMAGES = 500
+INPUT_IMAGES = "~/Pictures/jupiter-saturno 2020-12-23/"
 
-template = read('template')
+template = read(INPUT_IMAGES + 'template')
 template = cv.cvtColor(template, cv.COLOR_BGR2GRAY)
 
-for root, dirs, files in os.walk("./originals/"):
+for root, dirs, files in os.walk(INPUT_IMAGES):
     files.sort()
     image_name = files.pop(0)
     image = read_image(image_name)
