@@ -8,6 +8,6 @@ def read(fn):
         print("Error reading", fn)
     #img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     #print("with shape", img.shape)
-    img = img.astype(np.float32)
+    #img = img.astype(np.float32)
     #print(img.max(), img.min())
     return img
