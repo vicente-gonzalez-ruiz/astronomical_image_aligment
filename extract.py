@@ -11,9 +11,6 @@ template = cv.cvtColor(template, cv.COLOR_BGR2GRAY)
 
 for root, dirs, files in os.walk("./originals/"):
     files.sort()
-    print(files)
-
-    '''
     image_name = files.pop(0)
     image = read_image(image_name)
     counter = 1
@@ -22,4 +19,3 @@ for root, dirs, files in os.walk("./originals/"):
         res = cv.matchTemplate(image, template, cv.TM_CCOEFF)
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
         print(min_val, max_val, min_loc, max_loc)
-    '''
