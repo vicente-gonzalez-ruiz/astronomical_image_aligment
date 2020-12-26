@@ -1,9 +1,9 @@
-import sys
+#import sys
 import os
 import cv2 as cv
 import numpy as np
 import image_io
-from matplotlib import pyplot as plt
+#from matplotlib import pyplot as plt
 
 # INPUT_DIR/template.tiff
 # INPUT_DIR/originals/*.tiff
@@ -20,14 +20,14 @@ w = template_Y.shape[0]
 h = template_Y.shape[1]
 print(f"done (size={template_Y.shape})")
 
-def normalize(image):
-    max = image.max()
-    min = image.min()
-    max_min = max - min
-    normal = (image - min) / max_min
-    #normal *= 65535
-    #normal = normal.astype(np.uint16)
-    return normal, max, min
+#def normalize(image):
+#    max = image.max()
+#    min = image.min()
+#    max_min = max - min
+#    normal = (image - min) / max_min
+#    #normal *= 65535
+#    #normal = normal.astype(np.uint16)
+#    return normal, max, min
 
 prefix = INPUT_DIR + "full_size/"
 for root, dirs, files in os.walk(prefix):
@@ -49,8 +49,8 @@ for root, dirs, files in os.walk(prefix):
         #cv.imwrite(extract_fn, extraction.astype(np.uint16))
         cv.imwrite(extract_fn, extraction)
         counter += 1
-        bottom_right = (top_left[0] + h, top_left[1] + w)
-        cv.rectangle(image, top_left, bottom_right, 65535, 2)
-        normal = (normalize(image)[0]*255).astype(np.int)
-        plt.subplot(111), plt.imshow(normal, cmap = 'gray')
-        plt.show()
+        #bottom_right = (top_left[0] + h, top_left[1] + w)
+        #cv.rectangle(image, top_left, bottom_right, 65535, 2)
+        #normal = (normalize(image)[0]*255).astype(np.int)
+        #plt.subplot(111), plt.imshow(normal, cmap = 'gray')
+        #plt.show()
