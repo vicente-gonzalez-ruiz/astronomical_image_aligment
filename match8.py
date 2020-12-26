@@ -2,14 +2,16 @@ import numpy as np
 import cv2 as cv
 import os
 import astroalign as aa
-import io.read ad read
-import io.read_image as read_image
+import image_io
 
 MAX_NUMBER_OF_IMAGES = 500
 MAX_CONTROL_POINTS = 50
+INPUT_DIR = "/Users/vruiz/Pictures/jupiter-saturno 2020-12-24-c/"
+EXTENSION = ".tiff"
 
-# Dark image
-dark_image = read("dark.tiff")
+# Dark image. This image registerizing tool supposes that all the dark
+# image is the same for all the input images.
+dark_image = image_io.read(INPUT_DIR + "dark" + EXTENSION)
 
 def normalize(image):
     max = image.max()
@@ -20,15 +22,16 @@ def normalize(image):
     normal = normal.astype(np.uint16)
     return normal, max, min
 
-for root, dirs, files in os.walk("./images/"):
+prefix = INPUT_DIR + "full_size/"
+for root, dirs, files in os.walk(prefix):
     files.sort()
     source_name = files.pop(0)
-    source_image = read_image(source_name)
+    source_image = image_io.read(prefix + source_name)
     source_image -= dark_image
     counter = 1
     for target_name in files:
         source_image_luma = cv.cvtColor(source_image, cv.COLOR_BGR2GRAY)
-        target_image = read_image(target_name)
+        target_image = image_io.read(prefix + target_name)
         target_image -= dark_image
         accumulated_image = target_image
         print("Projecting", source_name, "to", target_name)

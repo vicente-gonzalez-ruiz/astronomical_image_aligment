@@ -2,7 +2,7 @@ import numpy as np
 import cv2 as cv
 
 def read(fn):
-    #print("Reading", fn, end= ' ', flush=True)
+    print("Reading", fn, end= ' ', flush=True)
     img = cv.imread(fn, cv.IMREAD_UNCHANGED)
     if img is None:
         print("Error reading", fn)
