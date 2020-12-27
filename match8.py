@@ -37,6 +37,7 @@ for root, dirs, files in os.walk(prefix):
         #                                    thresh=1,
         #                                    maxval=65535,
         #                                    type=cv.THRESH_OTSU)
+        # source_image_luma = cv.adaptiveThreshold(img,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C,cv.THRESH_BINARY,11,2
         cv.imwrite("{:03d}_source.tiff".format(counter), source_image_luma)
         target_image = image_io.read(prefix + target_name).astype(np.float32)
         #target_image = image_io.read(prefix + source_name).astype(np.float32)
