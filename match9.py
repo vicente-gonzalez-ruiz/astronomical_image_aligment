@@ -6,14 +6,14 @@ import image_io
 
 MAX_NUMBER_OF_IMAGES = 500
 MAX_CONTROL_POINTS = 300 # Default value 50
-DETECTION_SIGMA = 2     # Default value 5
-MIN_AREA = 2            # Default value 5
+DETECTION_SIGMA = 2      # Default value 5
+MIN_AREA = 2             # Default value 5
 INPUT_DIR = "/Users/vruiz/Pictures/jupiter-saturno 2020-12-24-c/"
 EXTENSION = ".tiff"
 
 # Dark image. This image registerizing tool supposes that all the dark
 # image is the same for all the input images.
-dark_image = image_io.read(INPUT_DIR + "dark" + EXTENSION).astype(np.float32)
+#dark_image = image_io.read(INPUT_DIR + "dark" + EXTENSION).astype(np.float32)
 
 def normalize(image):
     max = image.max()
@@ -26,12 +26,12 @@ def normalize(image):
     normal = normal.astype(np.uint8)
     return normal, max, min
 
-prefix = INPUT_DIR + "full_size/"
+prefix = INPUT_DIR + "extracted/resized/"
 for root, dirs, files in os.walk(prefix):
     files.sort()
     source_name = files.pop(0)
     source_image = image_io.read(prefix + source_name).astype(np.float32)
-    source_image -= dark_image
+    #source_image -= dark_image
     counter = 1
     for target_name in files:
         source_image_luma = normalize(cv.cvtColor(source_image, cv.COLOR_BGR2GRAY))[0]
@@ -53,7 +53,7 @@ for root, dirs, files in os.walk(prefix):
         cv.imwrite("{:03d}_source.tiff".format(counter), source_image_luma)
         target_image = image_io.read(prefix + target_name).astype(np.float32)
         #target_image = image_io.read(prefix + source_name).astype(np.float32)
-        target_image -= dark_image
+        #target_image -= dark_image
         accumulated_image = target_image
         print("Projecting", source_name, "to", target_name)
         target_image_luma = normalize(cv.cvtColor(target_image, cv.COLOR_BGR2GRAY))[0]
